@@ -11,4 +11,8 @@ $router->post('/logout', 'Auth\AuthController@logout');
 
 $router->middleware('jwt.auth')->group( function ( $router ) {
     $router->get('/me', 'Auth\AuthController@user');
+    $router->get('/users', function () {
+        $data = 'Users Index';
+        return response()->json(['data' => $data], 200);
+    });
 });
