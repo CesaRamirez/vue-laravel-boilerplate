@@ -22183,6 +22183,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -22191,7 +22201,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             name: null,
             email: null,
-            password: null
+            password: null,
+            errors: []
         };
     },
     methods: Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])({
@@ -22203,7 +22214,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     name: this.name,
                     email: this.email,
                     password: this.password
-                }
+                },
+                context: this
             });
         }
     })
@@ -22326,9 +22338,11 @@ const Register = __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('register
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const register = ({ dispatch }, { payload }) => {
+const register = ({ dispatch }, { payload, context }) => {
     return axios.post('/api/register', payload).then(response => {
         console.log(response);
+    }).catch(error => {
+        context.errors = error.response.data.errors;
     });
 };
 /* harmony export (immutable) */ __webpack_exports__["register"] = register;
@@ -42340,7 +42354,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.name
+    },
+    on: {
+      "keyup": function($event) {
+        _vm.errors.name = null
+      }
+    }
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -42372,8 +42394,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.name = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+  }), _vm._v(" "), (_vm.errors.name) ? _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                                    " + _vm._s(_vm.errors.name[0]) + "\n                                ")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.email
+    },
+    on: {
+      "keyup": function($event) {
+        _vm.errors.name = null
+      }
+    }
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -42404,8 +42436,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.email = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+  }), _vm._v(" "), (_vm.errors.email) ? _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                                    " + _vm._s(_vm.errors.email[0]) + "\n                                ")]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors.password
+    },
+    on: {
+      "keyup": function($event) {
+        _vm.errors.name = null
+      }
+    }
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -42435,7 +42477,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.password = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _vm._m(0)])])])])])])
+  }), _vm._v(" "), (_vm.errors.password) ? _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n                                    " + _vm._s(_vm.errors.password[0]) + "\n                                ")]) : _vm._e()])]), _vm._v(" "), _vm._m(0)])])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "form-group"

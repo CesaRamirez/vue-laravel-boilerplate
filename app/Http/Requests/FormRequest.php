@@ -14,10 +14,10 @@ use Illuminate\Http\JsonResponse;
   * @param  array  $errors
   * @return \Symfony\Component\HttpFoundation\Response
   */
-    public function response()
+    public function response(array $errors)
     {
         if ($this->expectsJson()) {
-            return new JsonResponse($errors, 422);
+            return new JsonResponse(['errors' => $errors], 422);
         }
 
         return $this->redirector->to($this->getRedirectUrl())
