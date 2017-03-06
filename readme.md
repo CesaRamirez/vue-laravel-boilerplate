@@ -38,3 +38,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+## Packages
+
+- [JWT-Auth](https://github.com/tymondesigns/jwt-auth) JSON Web Token Authentication for Laravel & Lumen.
+- [Vuex](https://github.com/vuejs/vuex) Centralized State Management for Vue.js. 
+- [localForage](https://github.com/localForage/localForage) Offline storage, improved. Wraps IndexedDB, WebSQL, or localStorage using a simple but powerful API.
