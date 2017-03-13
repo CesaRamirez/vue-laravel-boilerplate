@@ -5,7 +5,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Register</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" @submit.prevent="submit">
+                        <form class="form-horizontal" role="form" @submit.prevent="submit" novalidate>
                             <div class="form-group" :class="{ 'has-error' : errors.name }" @keyup="errors.name = null">
                                 <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -82,6 +82,10 @@
                     },
                     context: this
                 }).then( () => {
+                    if (this.errors) {
+                      this.$router.replace({ name: 'register' })
+                      return
+                    }
                     this.$router.replace({ name: 'home' })
                 })
             }

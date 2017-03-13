@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+$router->get('/{vue_capture?}', function () {
+    return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*');
