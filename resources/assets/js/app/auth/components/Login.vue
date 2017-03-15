@@ -88,10 +88,6 @@
                     },
                     context: this
                 }).then( () => {
-                  if (this.errors) {
-                    this.$router.replace({ name: 'login' })
-                    return
-                  }
                   localforage.getItem('intended').then( (name) => {
                       if (isEmpty(name)) {
                           this.$router.replace({ name: 'home' })

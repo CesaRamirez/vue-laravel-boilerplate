@@ -82,7 +82,7 @@
                     },
                     context: this
                 }).then( () => {
-                    if (this.errors) {
+                    if ( this.errors ) {
                       this.$router.replace({ name: 'register' })
                       return
                     }
