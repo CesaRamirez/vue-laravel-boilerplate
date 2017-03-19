@@ -5,11 +5,11 @@ import 'bootstrap-sass';
 import axios from 'axios'
 import localforage from 'localforage'
 
-window.Vue = Vue
+window.Vue = Vue;
 window._ = lodash;
 window.$ = window.jQuery = jquery;
 window.axios = axios;
-window.localforage = localforage
+window.localforage = localforage;
 
 window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': window.Laravel.csrfToken,
@@ -19,4 +19,4 @@ window.axios.defaults.headers.common = {
 localforage.config({
     driver: localforage.LOCALSTORAGE,
     storeName: 'boilerplate'
-})
+});
