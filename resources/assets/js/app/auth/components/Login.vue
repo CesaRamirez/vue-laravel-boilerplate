@@ -8,7 +8,7 @@
                         <div class="alert alert-danger" v-if="errors.root">
                             {{ errors.root }}
                         </div>
-                        <form class="form-horizontal" role="form" @submit.prevent="submit">
+                        <form class="form-horizontal" role="form" @submit.prevent="submit" novalidate>
 
                             <div class="form-group" :class="{ 'has-error' : errors.email }">
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
@@ -88,13 +88,13 @@
                     },
                     context: this
                 }).then( () => {
-                    localforage.getItem('intended').then( (name) => {
-                        if (isEmpty(name)) {
-                            this.$router.replace({ name: 'home' })
-                            return
-                        }
-                        this.$router.replace({ name: name })
-                    })
+                  localforage.getItem('intended').then( (name) => {
+                      if (isEmpty(name)) {
+                          this.$router.replace({ name: 'home' })
+                          return
+                      }
+                      this.$router.replace({ name: name })
+                  })
                 })
             }
         }

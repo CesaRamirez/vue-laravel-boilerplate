@@ -32,8 +32,7 @@
                         <!-- Authentication Links -->
                             <li><router-link :to="{ name: 'users' }">Users</router-link></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    César <span class="caret"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" v-text="user.data.name"><span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">

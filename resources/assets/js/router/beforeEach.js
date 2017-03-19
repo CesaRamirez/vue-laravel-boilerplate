@@ -6,7 +6,6 @@ const beforeEach = ((to, from, next) => {
         if (to.meta.guest) {
             next({ name: 'home' })
             return
-            console.log('dont')
         }
 
         next()
@@ -16,7 +15,7 @@ const beforeEach = ((to, from, next) => {
             next({ name: 'login' })
             return
         }
-        
+
         next()
     })
 })
