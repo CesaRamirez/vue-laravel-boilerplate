@@ -44,3 +44,16 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - [JWT-Auth](https://github.com/tymondesigns/jwt-auth) JSON Web Token Authentication for Laravel & Lumen.
 - [Vuex](https://github.com/vuejs/vuex) Centralized State Management for Vue.js. 
 - [localForage](https://github.com/localForage/localForage) Offline storage, improved. Wraps IndexedDB, WebSQL, or localStorage using a simple but powerful API.
+
+## Build Setup
+
+``` bash
+# install dependencies php
+composer install
+
+# install dependences javascript
+yarn or npm install
+
+# build for production with minification
+npm run production
+```

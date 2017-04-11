@@ -82,12 +82,8 @@
                     },
                     context: this
                 }).then( () => {
-                    if ( this.errors ) {
-                      this.$router.replace({ name: 'register' })
-                      return
-                    }
                     this.$router.replace({ name: 'home' })
-                })
+                }).catch( () => {})
             }
         }
     }

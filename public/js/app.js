@@ -41649,7 +41649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                     this.$router.replace({ name: name });
                 });
-            });
+            }).catch(err => {});
         }
     })
 };
@@ -41744,12 +41744,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 context: this
             }).then(() => {
-                if (this.errors) {
-                    this.$router.replace({ name: 'register' });
-                    return;
-                }
                 this.$router.replace({ name: 'home' });
-            });
+            }).catch(() => {});
         }
     })
 };
@@ -41913,31 +41909,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 const register = ({ dispatch }, { payload, context }) => {
-    return axios.post('/api/register', payload).then(response => {
-        dispatch('setToken', response.data.meta.token).then(() => {
-            dispatch('fetchUser');
+    return new Promise((resolve, reject) => {
+        axios.post('/api/register', payload).then(response => {
+            dispatch('setToken', response.data.meta.token).then(() => {
+                dispatch('fetchUser');
+                resolve(response.data);
+            });
+        }).catch(error => {
+            context.errors = error.response.data.errors;
+            reject(error.response.data.errors);
         });
-    }).catch(error => {
-        context.errors = error.response.data.errors;
     });
 };
 /* harmony export (immutable) */ __webpack_exports__["register"] = register;
 
 
 const login = ({ dispatch }, { payload, context }) => {
-    return axios.post('/api/login', payload).then(response => {
-        dispatch('setToken', response.data.meta.token).then(() => {
-            dispatch('fetchUser');
+    return new Promise((resolve, reject) => {
+        axios.post('/api/login', payload).then(response => {
+            dispatch('setToken', response.data.meta.token).then(() => {
+                dispatch('fetchUser');
+                resolve(response.data);
+            });
+        }).catch(error => {
+            context.errors = error.response.data.errors;
+            reject(error.response.data.errors);
         });
-    }).catch(error => {
-        context.errors = error.response.data.errors;
     });
 };
 /* harmony export (immutable) */ __webpack_exports__["login"] = login;
 
 
 const logout = ({ dispatch }) => {
-    return axios.post('/api/logout').then(response => {
+    return axios.post('/api/logout').then(() => {
         dispatch('clearAuth');
     });
 };
@@ -42262,7 +42266,6 @@ const beforeEach = (to, from, next) => {
         if (to.meta.guest) {
             next({ name: 'home' });
             return;
-            console.log('dont');
         }
 
         next();
@@ -44703,7 +44706,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/cesar/Code/projects/vl-boilerplate/resources/assets/js/app/auth/components/Login.vue"
+Component.options.__file = "/home/cesar/Code/projects/vue-laravel-boilerplate/resources/assets/js/app/auth/components/Login.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44714,9 +44717,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4a24eb06", Component.options)
+    hotAPI.createRecord("data-v-eab1ecd4", Component.options)
   } else {
-    hotAPI.reload("data-v-4a24eb06", Component.options)
+    hotAPI.reload("data-v-eab1ecd4", Component.options)
   }
 })()}
 
@@ -44731,13 +44734,13 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(68),
+  __webpack_require__(69),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/cesar/Code/projects/vl-boilerplate/resources/assets/js/app/auth/components/Register.vue"
+Component.options.__file = "/home/cesar/Code/projects/vue-laravel-boilerplate/resources/assets/js/app/auth/components/Register.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Register.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44748,9 +44751,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-06f9efd4", Component.options)
+    hotAPI.createRecord("data-v-3ab4c0f4", Component.options)
   } else {
-    hotAPI.reload("data-v-06f9efd4", Component.options)
+    hotAPI.reload("data-v-3ab4c0f4", Component.options)
   }
 })()}
 
@@ -44765,13 +44768,13 @@ var Component = __webpack_require__(1)(
   /* script */
   null,
   /* template */
-  __webpack_require__(70),
+  __webpack_require__(68),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/cesar/Code/projects/vl-boilerplate/resources/assets/js/app/errors/components/NotFound.vue"
+Component.options.__file = "/home/cesar/Code/projects/vue-laravel-boilerplate/resources/assets/js/app/errors/components/NotFound.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] NotFound.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44782,9 +44785,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-39e0e665", Component.options)
+    hotAPI.createRecord("data-v-21bb61d5", Component.options)
   } else {
-    hotAPI.reload("data-v-39e0e665", Component.options)
+    hotAPI.reload("data-v-21bb61d5", Component.options)
   }
 })()}
 
@@ -44799,13 +44802,13 @@ var Component = __webpack_require__(1)(
   /* script */
   null,
   /* template */
-  __webpack_require__(69),
+  __webpack_require__(74),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/cesar/Code/projects/vl-boilerplate/resources/assets/js/app/home/components/Home.vue"
+Component.options.__file = "/home/cesar/Code/projects/vue-laravel-boilerplate/resources/assets/js/app/home/components/Home.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Home.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44816,9 +44819,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0bf5e8ee", Component.options)
+    hotAPI.createRecord("data-v-ef064a0e", Component.options)
   } else {
-    hotAPI.reload("data-v-0bf5e8ee", Component.options)
+    hotAPI.reload("data-v-ef064a0e", Component.options)
   }
 })()}
 
@@ -44833,13 +44836,13 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(38),
   /* template */
-  __webpack_require__(74),
+  __webpack_require__(70),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/cesar/Code/projects/vl-boilerplate/resources/assets/js/app/users/components/Users.vue"
+Component.options.__file = "/home/cesar/Code/projects/vue-laravel-boilerplate/resources/assets/js/app/users/components/Users.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Users.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44850,9 +44853,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-cdc79c12", Component.options)
+    hotAPI.createRecord("data-v-68dde567", Component.options)
   } else {
-    hotAPI.reload("data-v-cdc79c12", Component.options)
+    hotAPI.reload("data-v-68dde567", Component.options)
   }
 })()}
 
@@ -44873,7 +44876,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/cesar/Code/projects/vl-boilerplate/resources/assets/js/components/App.vue"
+Component.options.__file = "/home/cesar/Code/projects/vue-laravel-boilerplate/resources/assets/js/components/App.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] App.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44884,9 +44887,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3d28117b", Component.options)
+    hotAPI.createRecord("data-v-d271262a", Component.options)
   } else {
-    hotAPI.reload("data-v-3d28117b", Component.options)
+    hotAPI.reload("data-v-d271262a", Component.options)
   }
 })()}
 
@@ -44907,7 +44910,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/cesar/Code/projects/vl-boilerplate/resources/assets/js/components/Navigation.vue"
+Component.options.__file = "/home/cesar/Code/projects/vue-laravel-boilerplate/resources/assets/js/components/Navigation.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Navigation.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44918,9 +44921,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b1feb1ac", Component.options)
+    hotAPI.createRecord("data-v-ec0ee48c", Component.options)
   } else {
-    hotAPI.reload("data-v-b1feb1ac", Component.options)
+    hotAPI.reload("data-v-ec0ee48c", Component.options)
   }
 })()}
 
@@ -44929,6 +44932,21 @@ module.exports = Component.exports
 
 /***/ }),
 /* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_vm._v("404")])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-21bb61d5", module.exports)
+  }
+}
+
+/***/ }),
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45099,22 +45117,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-06f9efd4", module.exports)
-  }
-}
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_vm._v("Home")])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0bf5e8ee", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-3ab4c0f4", module.exports)
   }
 }
 
@@ -45123,13 +45126,13 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_vm._v("404")])
+  return _c('p', [_vm._v(_vm._s(_vm.index))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-39e0e665", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-68dde567", module.exports)
   }
 }
 
@@ -45146,7 +45149,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-3d28117b", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-d271262a", module.exports)
   }
 }
 
@@ -45298,7 +45301,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4a24eb06", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-eab1ecd4", module.exports)
   }
 }
 
@@ -45402,7 +45405,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-b1feb1ac", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-ec0ee48c", module.exports)
   }
 }
 
@@ -45411,13 +45414,13 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('p', [_vm._v(_vm._s(_vm.index))])
+  return _c('p', [_vm._v("Home")])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-cdc79c12", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-ef064a0e", module.exports)
   }
 }
 
