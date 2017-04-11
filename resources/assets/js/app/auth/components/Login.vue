@@ -95,7 +95,8 @@
                       }
                       this.$router.replace({ name: name })
                   })
-                })
+                }).catch( (err) => {})
+
             }
         }
     }
